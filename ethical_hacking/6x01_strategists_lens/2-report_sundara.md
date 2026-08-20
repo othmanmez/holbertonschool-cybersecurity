@@ -1,0 +1,45 @@
+# Vanguard Security: Threat Modeling Engagement Report
+## Client: Sundara Lifestyle
+
+**Prepared by:** [Your Name], Junior Consultant  
+**Date:** 2026-08-20  
+**Distribution:** Sundara board (CFO, CEO, independent directors)
+
+## 1. Executive Summary
+The board should treat the EU expansion decision as a risk-and-governance issue, not just an engineering issue. Sundara’s mobile-first retail model, combined with loyalty accounts, geolocation, AI recommendations, payment integration, and a cross-border reservation module, creates a materially larger attack surface than a conventional retail launch. The evidence in the mobile application architecture diagram and the threat intelligence briefing shows that loyalty-data compromise and payment-related fraud are not hypothetical; they are active patterns in the retail sector across Asia and Europe. The strongest risk is not that one single component fails, but that Sundara is moving regulated customer data across jurisdictions without fully aligning the business model, consent model, and technical controls to both PDPA and GDPR. On the current facts, the prudent choice is to delay the EU launch by six months for hardening rather than to proceed under a known residual risk that could damage the brand, trigger regulatory scrutiny, and weaken the IPO timeline.
+
+## 2. Engagement Context
+Sundara has entered an aggressive EU expansion phase in Germany, France, and the Netherlands, despite the risk of a recent comparable Asian retail breach that damaged a competitor’s credibility before launch. The company is also under IPO pressure and is balancing the need for growth against the risk of exposing a high-value customer-data model to cross-border privacy and fraud exposure. This engagement was conducted to inform the board’s decision on whether to delay the EU launch for hardening or proceed as planned, with the business context document, architecture diagram, and threat intelligence briefing used as the decision inputs. The analysis also reflects the specific regulatory duality of PDPA for Singapore and GDPR for the EU expansion, along with the cross-border data obligations that connect them.
+
+## 3. Framework Choice and Rationale
+PASTA was selected because it is the most appropriate framework for a board-level decision where the primary question is whether a launch can proceed without unacceptable business, regulatory, and customer-trust risk. The business context document explicitly identifies the competitor breach precedent, the EU launch timeline, IPO ambitions, and stakeholder concerns, all of which are business objectives rather than purely technical vulnerabilities. The mobile application architecture diagram shows a complex customer flow involving loyalty, geolocation, AI recommendations, integrated payment, and cross-border reservations, creating a technical scope that directly affects business outcomes and privacy exposure. The threat intelligence briefing provides evidence of current retail skimming and loyalty-data activity in Asia and Europe, which makes the adversary model concrete and distinguishes this engagement from a generic design review. This is a better fit for the Sundara board than a pure asset matrix because it keeps the entire analysis tied to the launch decision, regulatory exposure, and commercial consequences of proceeding too early.
+
+## 4. Threat Model
+The threat model was built around the business objective of safe EU expansion and the reality that the app is a data-rich customer channel operating across multiple jurisdictions. The greatest risk is not limited to one technology layer; it is the interaction of loyalty data, payment integration, profile enrichment, and cross-border transfers across the app, partner integrations, and customer account workflows. The board should understand that the relevant question is whether Sundara can both protect customer trust and meet EU privacy expectations before scaling the customer footprint.
+
+| Threat domain | Why it matters | Cross-border / regulatory impact | Priority |
+| --- | --- | --- | --- |
+| Loyalty account compromise | Account takeover can lead to fraud, reduced trust, and direct customer harm | PDPA and GDPR both apply to personal data handling and privacy breaches | High |
+| Payment and app-integrity abuse | Skimming or session abuse can drive financial loss and customer chargebacks | Increased risk of consumer-protection and reporting obligations | High |
+| Geolocation and personalization data collection | Excess data collection can be perceived as intrusive and exceed purpose limitation | GDPR fairness, transparency, and data minimization risk | High |
+| Cross-border reservation and partner data flows | Data is moved outside intended jurisdictions and may bypass expected safeguards | PDPA/GDPR interaction creates legal and operational complexity | High |
+| Third-party marketing and analytics integrations | Partner ecosystems can expand the attack surface and weaken accountability | Contractual and privacy obligations across jurisdictions | Medium |
+
+The model explicitly separates Sundara’s first-party perimeter from third-party dependencies. POS hardware is not modeled as a Sundara-owned or controlled asset because the RoE and business documents state that it is managed by a third party; this is a limitation that belongs in the uncertainty section, not in the primary threat model. In contrast, the board should treat marketing partners, payment providers, and analytics vendors as active components of the risk surface because they receive or process customer data in ways that can materially affect the launch decision.
+
+## 5. Recommendations and Prioritization
+1. Delay the EU launch by six months unless Sundara can prove that customer-data collection, consent, and cross-border transfer controls are hardened first. This is the priority decision because the business and regulatory consequences of entering the EU with a weak data model are higher than the cost of delaying launch.
+2. Reduce the data model to a minimum viable, purpose-limited design. The app should collect only the data required for loyalty, payment, and booking functions, and should remove or delay geolocation and AI recommendation data collection until the consent, retention, and accountability model is fully validated.
+3. Tighten third-party governance for payment, marketing, and analytics vendors. Sundara should review contracts, data processing boundaries, and incident response obligations before relying on external providers for the EU launch, with special attention to cross-border transfer mechanisms and evidence of lawful basis.
+
+These priorities are anchored in the business outcome: if the board cannot credibly support a compliant and trust-preserving customer journey in the EU, the launch should pause. The objective is not to eliminate all risk, but to reduce the residual risk to a level the board can defend in front of investors, regulators, and customers.
+
+## 6. Limitations and Uncertainty
+This engagement is a design-time threat-model review based on the provided architecture materials, business context, and threat-intelligence brief. It is not a live technical validation of all system implementations and therefore cannot confirm the real-world posture of every payment, vendor, or analytics integration. The POS hardware is operated and managed by a third party and must be treated as a dependency risk rather than a first-party Sundara asset; it is therefore not modeled in the primary threat model. Jurisdictionally, the interaction between PDPA and GDPR is dynamic, and the precise lawful basis and transfer mechanism for each customer-data flow will depend on implementation details not yet fully visible in the architecture. The assessment is therefore strongest as a decision-support tool for the board on the timing of the EU launch rather than as a final certification that all compliance conditions are satisfied.
+
+## 7. Appendix: Sourced Findings
+1. The mobile application architecture diagram shows the EU launch surface as a customer journey combining loyalty, payment, geolocation, AI recommendations, and cross-border reservations; this supports the risk concentration described in the threat model.
+2. The business context document identifies the competitor breach precedent, the EU market timing, and the IPO pressure; these are central to the board-level decision and support the recommendation to delay the launch if hardening is incomplete.
+3. The threat intelligence briefing documents active retail skimming and loyalty-data compromise activity in Asia and Europe; this reinforces the threat profile for payment and loyalty abuse described above.
+
+The analysis intentionally distinguishes Sundara’s first-party perimeter from third-party-managed components and places the Luxembourg-style cross-jurisdictional logic in the proper regulatory and operational context for a board decision. The model is designed to support the transition from technical risk to business risk, not to create a fiction that all attack paths are owned by the same party or system boundary.
