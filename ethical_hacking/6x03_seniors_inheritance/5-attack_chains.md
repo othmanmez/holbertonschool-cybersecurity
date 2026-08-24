@@ -1,0 +1,11 @@
+# Attack Chain Analysis
+
+## Chain 1: Cross-tenant access to regulated health data
+- Sequence: F-03/F-09 → F-01/F-10
+- Path: A malicious actor exploits a broad service token or stale privileged session to access the integration or admin plane, then leverages the tenant-boundary weakness in the results API and analytics service to retrieve patient records and cross-laboratory operational metadata that should have remained isolated by tenant.
+- Consolidated impact: This is materially worse than either issue alone because the attacker does not need to discover a single record in a vacuum; they can first gain service- or admin-level reachability and then pivot into the actual data boundary failure. In MediPath's context, the chain converts a credential-lifecycle weakness into a healthcare-data confidentiality event affecting multiple laboratories, with a direct impact on patient trust, HDS evidence, and RGPD Article 9 accountability. The result is not simply a technical authorization gap but a plausible multi-laboratory data-exposure scenario with regulatory and operational consequences that exceed the sum of the individual findings.
+
+## Chain 2: Workflow tampering and data exposure
+- Sequence: F-03/F-09 → F-05 → F-01/F-10
+- Path: A stale admin session or over-broad connector credential gives the adversary a foothold in the internal workflow boundary, then unsigned partner events are injected to alter sample-status or processing state, and the tenant-boundary weakness in the API and analytics layer is used to query or correlate linked patient and result records across laboratories.
+- Consolidated impact: This chain is dangerous because it combines an integrity attack on the diagnostic workflow with a confidentiality breach in the results and analysis plane. It can create false clinical states or delayed results while simultaneously exposing patient and laboratory data across tenant boundaries, which is a materially higher risk than a pure manipulation issue or a pure data-access issue. In healthcare terms, this can affect both the trustworthiness of the diagnostic pathway and the exposure of regulated data, giving the attack a remediation priority beyond the isolated severity of any single finding.
