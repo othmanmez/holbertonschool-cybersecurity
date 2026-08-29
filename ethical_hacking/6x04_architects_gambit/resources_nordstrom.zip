@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>PermanentRedirect</Code><Message>The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.</Message><Endpoint>hbtn.intranet.s3.amazonaws.com</Endpoint><Bucket>hbtn.intranet</Bucket><RequestId>DHFENH74E661VEH6</RequestId><HostId>IidoI8PyH4GSe0f5xCN5ozMbFjq/6jj7vlpxAjBw+n3wgN0uRnCeBsHsW4QThElr6VdQMUyeTg8=</HostId></Error>
